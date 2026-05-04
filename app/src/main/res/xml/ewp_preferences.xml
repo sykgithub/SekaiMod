@@ -80,6 +80,7 @@
 
     <PreferenceCategory
         app:key="serverTlsCamouflageCategory"
+        app:summary="REALITY and ECH are mutually exclusive — only one can be active"
         app:title="@string/tls_camouflage_settings">
         <moe.matsuri.nb4a.ui.SimpleMenuPreference
             app:defaultValue=""
@@ -103,6 +104,7 @@
 
     <PreferenceCategory
         app:key="serverECHCategory"
+        app:summary="Disabled when REALITY is configured (mutually exclusive)"
         app:title="@string/ech_settings">
         <SwitchPreference
             app:icon="@drawable/ic_notification_enhanced_encryption"

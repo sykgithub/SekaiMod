@@ -66,8 +66,16 @@ private fun buildEwpTLS(bean: EwpBean): OutboundTLSOptions {
             }
         }
 
-        // ECH (with fork-only query_server_name support)
-        if (bean.enableECH) {
+        // ECH (with fork-only query_server_name support).
+        //
+        // REALITY and ECH are mutually exclusive at the protocol level:
+        // REALITY needs the outer SNI in cleartext to mimic a real
+        // target, ECH encrypts the SNI inside HPKE. sing-box itself
+        // silently ignores ECH when REALITY is on (see
+        // common/tls/client.go), so we drop ECH here on purpose to
+        // make the resulting JSON match what the kernel will actually
+        // execute. UI layer also hides ECH when REALITY is set.
+        if (bean.enableECH && bean.realityPubKey.isBlank()) {
             ech = OutboundECHOptions().apply {
                 enabled = true
                 if (bean.echConfig.isNotBlank()) {

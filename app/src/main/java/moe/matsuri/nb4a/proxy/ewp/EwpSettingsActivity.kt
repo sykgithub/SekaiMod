@@ -65,5 +65,28 @@ class EwpSettingsActivity : ProfileSettingsActivity<EwpBean>() {
         findPreference<EditTextPreference>("uuid")!!.apply {
             summaryProvider = PasswordSummaryProvider
         }
+
+        // REALITY <-> ECH are mutually exclusive (see EwpFmt buildEwpTLS).
+        // Hide whichever section is incompatible with the current state
+        // so users don't believe both are active.
+        val echCategory = findPreference<androidx.preference.Preference>("serverECHCategory")
+        val realityPubKeyPref = findPreference<EditTextPreference>("realityPubKey")
+        val realityShortIdPref = findPreference<EditTextPreference>("realityShortId")
+        val enableEchPref = findPreference<androidx.preference.SwitchPreference>("enableECH")
+
+        fun syncMutex() {
+            val realityOn = !realityPubKeyPref?.text.isNullOrBlank()
+            val echOn = enableEchPref?.isChecked == true
+            echCategory?.isEnabled = !realityOn
+            realityPubKeyPref?.isEnabled = !echOn
+            realityShortIdPref?.isEnabled = !echOn
+        }
+        syncMutex()
+        realityPubKeyPref?.setOnPreferenceChangeListener { _, _ ->
+            view?.post { syncMutex() }; true
+        }
+        enableEchPref?.setOnPreferenceChangeListener { _, _ ->
+            view?.post { syncMutex() }; true
+        }
     }
 }
