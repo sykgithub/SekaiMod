@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">NekoBox</string>
+    <string name="app_name" translatable="false">SekaiMod</string>
     <string name="app_name_long" translatable="false">NekoBox for Android</string>
     <string name="app_desc">The universal proxy toolchain for Android, written in Kotlin.</string>
     <string name="project">Project</string>
@@ -219,6 +219,13 @@
     <string name="action_mieru" translatable="false">Mieru</string>
     <string name="action_naive" translatable="false">Naïve</string>
     <string name="action_anytls" translatable="false">AnyTLS</string>
+    <string name="action_ewp" translatable="false">EWP</string>
+    <string name="transport_settings">Transport Settings</string>
+    <string name="mux_settings">Multiplex Settings</string>
+    <string name="v_type">Transport Type</string>
+    <string name="host">Host</string>
+    <string name="path">Path</string>
+    <string name="mux_padding">Mux Padding</string>
     <string name="action_hysteria" translatable="false">Hysteria</string>
     <string name="action_ssh" translatable="false">SSH</string>
     <string name="action_wireguard" translatable="false">WireGuard</string>
