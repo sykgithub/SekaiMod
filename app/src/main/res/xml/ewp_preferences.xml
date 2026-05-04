@@ -1,0 +1,146 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        app:icon="@drawable/ic_social_emoji_symbols"
+        app:key="name"
+        app:title="@string/profile_name"
+        app:useSimpleSummaryProvider="true" />
+
+    <PreferenceCategory app:title="@string/proxy_cat">
+        <EditTextPreference
+            app:icon="@drawable/ic_hardware_router"
+            app:key="serverAddress"
+            app:title="@string/server_address"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_maps_directions_boat"
+            app:key="serverPort"
+            app:title="@string/server_port"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_person_24"
+            app:key="uuid"
+            app:title="@string/uuid" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/transport_settings">
+        <moe.matsuri.nb4a.ui.SimpleMenuPreference
+            app:defaultValue="tcp"
+            app:entries="@array/networks_value"
+            app:entryValues="@array/networks_value"
+            app:icon="@drawable/ic_baseline_multiple_stop_24"
+            app:key="type"
+            app:title="@string/v_type"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_domain_24"
+            app:key="host"
+            app:title="@string/host"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_format_align_left_24"
+            app:key="path"
+            app:title="@string/path"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="serverSecurityCategory"
+        app:title="@string/security_settings">
+        <EditTextPreference
+            app:icon="@drawable/ic_action_copyright"
+            app:key="sni"
+            app:title="@string/sni"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_legend_toggle_24"
+            app:key="alpn"
+            app:title="@string/alpn"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_vpn_key_24"
+            app:key="certificates"
+            app:title="@string/certificates"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreference
+            app:icon="@drawable/ic_notification_enhanced_encryption"
+            app:key="allowInsecure"
+            app:title="@string/allow_insecure" />
+        <SwitchPreference
+            app:icon="@drawable/ic_baseline_legend_toggle_24"
+            app:key="tlsFragment"
+            app:summary="Split TLS ClientHello across packets"
+            app:title="TLS Fragment" />
+        <SwitchPreference
+            app:icon="@drawable/ic_baseline_legend_toggle_24"
+            app:key="tlsRecordFragment"
+            app:summary="Split TLS records (more aggressive)"
+            app:title="TLS Record Fragment" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="serverTlsCamouflageCategory"
+        app:title="@string/tls_camouflage_settings">
+        <moe.matsuri.nb4a.ui.SimpleMenuPreference
+            app:defaultValue=""
+            app:entries="@array/utls_fingerprint_entry"
+            app:entryValues="@array/utls_fingerprint_entry"
+            app:icon="@drawable/ic_baseline_fingerprint_24"
+            app:key="utlsFingerprint"
+            app:title="@string/utls_fingerprint"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_vpn_key_24"
+            app:key="realityPubKey"
+            app:title="REALITY Public Key"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_grid_3x3_24"
+            app:key="realityShortId"
+            app:title="REALITY Short ID"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="serverECHCategory"
+        app:title="@string/ech_settings">
+        <SwitchPreference
+            app:icon="@drawable/ic_notification_enhanced_encryption"
+            app:key="enableECH"
+            app:title="@string/enable_ech" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_vpn_key_24"
+            app:key="echConfig"
+            app:title="@string/ech_config"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_action_copyright"
+            app:key="echQueryServerName"
+            app:summary="FQDN used to fetch ECH config via HTTPS RR (decouples from inner SNI)"
+            app:title="ECH Query Server Name" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="serverMuxCategory"
+        app:title="@string/mux_settings">
+        <SwitchPreference
+            app:icon="@drawable/ic_baseline_compare_arrows_24"
+            app:key="enableMux"
+            app:title="@string/enable_mux" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_view_list_24"
+            app:key="muxType"
+            app:title="@string/mux_type"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:icon="@drawable/ic_baseline_multiple_stop_24"
+            app:key="muxConcurrency"
+            app:title="@string/mux_concurrency"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreference
+            app:icon="@drawable/ic_baseline_legend_toggle_24"
+            app:key="muxPadding"
+            app:title="@string/mux_padding" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

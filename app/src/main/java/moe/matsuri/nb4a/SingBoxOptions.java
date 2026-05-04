@@ -1888,6 +1888,13 @@ public class SingBoxOptions {
 
         public String certificate_path;
 
+        // TLS fragmentation (anti-censor)
+        public Boolean fragment;
+
+        public String fragment_fallback_delay;
+
+        public Boolean record_fragment;
+
         public OutboundECHOptions ech;
 
         public OutboundUTLSOptions utls;
@@ -1972,6 +1979,9 @@ public class SingBoxOptions {
         public List<String> config;
 
         public String config_path;
+
+        // Fork-only: lets users decouple inner SNI from the public ECH key fetch domain.
+        public String query_server_name;
 
     }
 
@@ -4589,6 +4599,57 @@ public class SingBoxOptions {
     }
 
     // sing-box Options 生成器已经坏了，以下是从 husi 抄的
+
+    public static class Outbound_EwpOptions extends Outbound {
+
+        // Generate note: nested type DialerOptions
+        public String detour;
+
+        public String bind_interface;
+
+        public String inet4_bind_address;
+
+        public String inet6_bind_address;
+
+        public String protect_path;
+
+        public Integer routing_mark;
+
+        public Boolean reuse_addr;
+
+        public Long connect_timeout;
+
+        public Boolean tcp_fast_open;
+
+        public Boolean tcp_multi_path;
+
+        public Boolean udp_fragment;
+
+
+        public String domain_strategy;
+
+        public Long fallback_delay;
+
+        // End of public DialerOptions ;
+
+        // Generate note: nested type ServerOptions
+        public String server;
+
+        public Integer server_port;
+
+        // End of public ServerOptions ;
+
+        public String uuid;
+
+        public String network;
+
+        public OutboundTLSOptions tls;
+
+        public MultiplexOptions multiplex;
+
+        public V2RayTransportOptions transport;
+
+    }
 
     public static class Outbound_AnyTLSOptions extends Outbound {
 
