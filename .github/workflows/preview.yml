@@ -51,6 +51,16 @@ jobs:
         with:
           path: ~/.gradle
           key: gradle-oss-${{ hashFiles('**/*.gradle.kts') }}
+      - name: Restore release keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "KEYSTORE_BASE64 secret is not set; preview build will fall back to debug signing." >&2
+          else
+            echo "$KEYSTORE_BASE64" | base64 -d > sekai-release.keystore
+            echo "Restored sekai-release.keystore ($(wc -c < sekai-release.keystore) bytes)"
+          fi
       - name: Gradle Build
         env:
           BUILD_PLUGIN: none
@@ -60,6 +70,13 @@ jobs:
           # public Actions runners and frequently returns no tag_name,
           # leading to a 404 on the empty-version download URL.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Release signing for preview builds (so installer accepts
+          # the APK on devices like ColorOS / MIUI). See release.yml
+          # for the same wiring.
+          KEYSTORE_FILE: sekai-release.keystore
+          KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
+          ALIAS_NAME: ${{ secrets.ALIAS_NAME }}
+          ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
         run: |
           echo "sdk.dir=${ANDROID_HOME}" > local.properties
           echo "ndk.dir=${ANDROID_HOME}/ndk/25.0.8775105" >> local.properties

@@ -14,6 +14,13 @@ local.properties
 jniLibs/
 /library/libcore_build/
 /libcore/gomobile/
+
+# Release keystores restored at build time from KEYSTORE_BASE64 secret;
+# never commit them. The upstream release.keystore (NekoBox official)
+# remains tracked.
+sekai-release.keystore
+*.jks
+
 .idea/deploymentTargetDropDown.xml
 /nkmr
 

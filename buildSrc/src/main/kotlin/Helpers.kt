@@ -121,12 +121,28 @@ fun Project.setupAppCommon() {
 
     android.apply {
         if (keystorePwd != null) {
+            // KEYSTORE_FILE lets a fork point at its own keystore
+            // without overwriting the upstream-tracked release.keystore.
+            // Falls back to the in-repo file for backward compatibility.
+            val keystoreFile = lp.getProperty("KEYSTORE_FILE")
+                ?: System.getenv("KEYSTORE_FILE")
+                ?: "release.keystore"
             signingConfigs {
                 create("release") {
-                    storeFile = rootProject.file("release.keystore")
+                    storeFile = rootProject.file(keystoreFile)
                     storePassword = keystorePwd
                     keyAlias = alias
                     keyPassword = pwd
+                    // Force v3+v4 signature schemes so OEM
+                    // PackageInstallers (notably ColorOS / MIUI's
+                    // stricter installers, plus MT Manager) accept
+                    // the APK. Without v3, some installers report
+                    // "this app needs to be signed to install"
+                    // even though v1+v2 signatures are present.
+                    enableV1Signing = true
+                    enableV2Signing = true
+                    enableV3Signing = true
+                    enableV4Signing = true
                 }
             }
         }
