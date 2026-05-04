@@ -151,12 +151,6 @@ public class KryoConverters {
     }
 
     @TypeConverter
-    public static byte[] ewpSerialize(EwpBean bean) {
-        if (bean == null) return null;
-        return serialize(bean);
-    }
-
-    @TypeConverter
     public static EwpBean ewpDeserialize(byte[] bytes) {
         if (JavaUtil.isEmpty(bytes)) return null;
         return deserialize(new EwpBean(), bytes);

@@ -227,6 +227,7 @@ data class ProxyEntity(
             TYPE_TUIC -> tuicBean
             TYPE_SHADOWTLS -> shadowTLSBean
             TYPE_ANYTLS -> anyTLSBean
+            TYPE_EWP -> ewpBean
             TYPE_CHAIN -> chainBean
             TYPE_NEKO -> nekoBean
             TYPE_CONFIG -> configBean
