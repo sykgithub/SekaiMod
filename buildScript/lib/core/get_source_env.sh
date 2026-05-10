@@ -1,2 +1,2 @@
-export COMMIT_SING_BOX="v1.12.19-mod.1"
+export COMMIT_SING_BOX="v1.12.19-mod.2"
 export COMMIT_LIBNEKO="1c47a3af71990a7b2192e03292b4d246c308ef0b"
